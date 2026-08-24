@@ -1,0 +1,5 @@
+name = "white-house-fact-checked"
+compatibility_date = "2026-08-24"
+
+[assets]
+directory = "./public"
