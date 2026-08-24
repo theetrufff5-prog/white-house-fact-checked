@@ -33,6 +33,12 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
+    if (url.hostname === "www.whitehousefactchecked.com") {
+      url.hostname = "whitehousefactchecked.com";
+      url.protocol = "https:";
+      return Response.redirect(url.toString(), 301);
+    }
+
     if (url.pathname === "/api/visits") {
       const id = env.VISITOR_COUNTER.idFromName("white-house-fact-checked");
       const stub = env.VISITOR_COUNTER.get(id);
