@@ -4,58 +4,143 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>White House: Fact Checked</title>
-  <meta name="description" content="Claims. Receipts. Reality. White House: Fact Checked." />
+  <meta name="description" content="Claims. Receipts. Reality. White House: Fact Checked separates claims from evidence and links readers to the source." />
   <style>
-    :root{--bg:#080b11;--panel:#111722;--text:#f4f7fb;--muted:#a9b2c0;--red:#e32636;--blue:#3c7cff;--line:#283141}
-    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#162033 0,#080b11 45%);color:var(--text);font-family:Arial,Helvetica,sans-serif}a{color:inherit}
-    .wrap{max-width:1180px;margin:auto;padding:0 22px}.top{border-bottom:1px solid var(--line);background:rgba(8,11,17,.9);position:sticky;top:0;backdrop-filter:blur(8px);z-index:3}
-    .nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{font-size:20px;font-weight:900;letter-spacing:.04em}.brand span{color:var(--red)}.tag{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.18em}
-    .hero{padding:70px 0 36px;text-align:center}.kicker{display:inline-block;border:1px solid #3a465b;border-radius:999px;padding:8px 13px;color:#dce4ef;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.hero h1{font-size:clamp(42px,8vw,92px);line-height:.92;margin:22px auto 10px;max-width:980px;text-transform:uppercase;letter-spacing:-.04em}.hero h1 .red{color:var(--red)}.hero p{max-width:780px;margin:18px auto;color:#c5ceda;font-size:19px;line-height:1.6}.motto{margin-top:28px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:13px}.motto b{color:var(--red)}
-    .section{padding:34px 0 72px}.section-title{display:flex;align-items:center;gap:12px;margin-bottom:20px}.dot{width:10px;height:10px;border-radius:50%;background:var(--red);box-shadow:0 0 20px var(--red)}.section-title h2{font-size:22px;margin:0;text-transform:uppercase;letter-spacing:.08em}
-    .story{background:linear-gradient(145deg,#121925,#0d121b);border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 28px 70px rgba(0,0,0,.32)}.story-head{padding:34px;border-bottom:1px solid var(--line);background:linear-gradient(90deg,rgba(227,38,54,.15),transparent)}.label{display:inline-block;background:var(--red);color:white;font-weight:900;font-size:12px;padding:7px 10px;border-radius:6px;text-transform:uppercase;letter-spacing:.1em}.story h3{font-size:clamp(30px,5vw,58px);line-height:1.03;margin:18px 0 0;max-width:980px}.story-body{padding:34px;display:grid;grid-template-columns:1.35fr .65fr;gap:34px}.story-body p{font-size:18px;line-height:1.7;color:#d5dce6;margin-top:0}.factbox{background:#0b1018;border:1px solid #293548;border-radius:16px;padding:22px}.factbox h4{margin:0 0 12px;color:#fff;text-transform:uppercase;font-size:13px;letter-spacing:.12em}.factbox p{font-size:15px;color:#b7c0cd;line-height:1.55}.source{display:inline-flex;text-decoration:none;background:#fff;color:#0b0f16;padding:13px 18px;border-radius:10px;font-weight:900;margin-top:8px}.source:hover{transform:translateY(-1px)}
-    .archive{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}.card{background:#0e141e;border:1px solid var(--line);border-radius:14px;padding:22px}.card small{color:var(--red);font-weight:900;text-transform:uppercase;letter-spacing:.1em}.card h4{font-size:20px;line-height:1.2;margin:10px 0}.card p{color:var(--muted);line-height:1.55;margin-bottom:0}.footer{border-top:1px solid var(--line);padding:30px 0 44px;color:#8792a2;font-size:13px;text-align:center}
-    @media(max-width:760px){.story-body{grid-template-columns:1fr}.archive{grid-template-columns:1fr}.tag{display:none}.hero{padding-top:48px}.story-head,.story-body{padding:24px}}
+    :root{
+      --bg:#05070a; --panel:#0d1219; --panel2:#121923; --text:#f5f7fb;
+      --muted:#a8b0bd; --red:#e31b2d; --blue:#1597ff; --line:#252e3a;
+      --gold:#f6c453; --max:1220px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:
+      radial-gradient(circle at 18% -10%,rgba(21,151,255,.16),transparent 32rem),
+      radial-gradient(circle at 83% 0,rgba(227,27,45,.16),transparent 28rem),
+      var(--bg);color:var(--text);font-family:Inter,Arial,Helvetica,sans-serif}
+    a{color:inherit}
+    .wrap{width:min(var(--max),calc(100% - 32px));margin:auto}
+    .top{position:sticky;top:0;z-index:20;background:rgba(5,7,10,.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+    .nav{min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{font-weight:950;letter-spacing:.04em}.brand span{color:var(--red)}
+    .navlinks{display:flex;gap:18px;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+    .navlinks a{text-decoration:none;color:#cfd5df}.navlinks a:hover{color:white}
+    .banner{padding:20px 0 0}
+    .banner img{display:block;width:100%;border:1px solid #163a57;border-radius:16px;box-shadow:0 20px 70px rgba(0,0,0,.55)}
+    .strap{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;padding:20px 0 6px;color:#c9d1dc;font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}
+    .strap b{color:white}.strap .red{color:#ff4050}.strap .blue{color:#45afff}
+    section{padding:42px 0}
+    .eyebrow{font-size:12px;font-weight:950;letter-spacing:.16em;text-transform:uppercase;color:#ff5260}
+    h1,h2,h3{margin:0}
+    h2{font-size:clamp(28px,4vw,48px);line-height:1.02}
+    .sectionhead{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:18px}
+    .sectionhead p{max-width:620px;color:var(--muted);line-height:1.6;margin:0}
+    .hero-card{display:grid;grid-template-columns:1.05fr .95fr;background:linear-gradient(145deg,#111822,#090d13);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.35)}
+    .hero-card .media{min-height:420px;background:#06090d}
+    .hero-card .media img{width:100%;height:100%;object-fit:cover;display:block}
+    .hero-copy{padding:34px;display:flex;flex-direction:column;justify-content:center}
+    .badge{display:inline-flex;align-self:flex-start;border:1px solid #55424a;background:#2a1015;color:#ff6a76;border-radius:999px;padding:7px 11px;font-size:11px;font-weight:950;letter-spacing:.1em;text-transform:uppercase}
+    .hero-copy h1{font-size:clamp(34px,4.5vw,64px);line-height:.98;margin:16px 0}
+    .hero-copy p{color:#c9d0d9;font-size:17px;line-height:1.65;margin:0 0 18px}
+    .note{border-left:3px solid var(--gold);padding:12px 14px;background:rgba(246,196,83,.06);color:#d9d2b9;font-size:14px;line-height:1.55}
+    .story{background:linear-gradient(145deg,#111822,#0b1017);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+    .story-top{padding:30px;border-bottom:1px solid var(--line);background:linear-gradient(90deg,rgba(227,27,45,.14),transparent)}
+    .story-top h3{font-size:clamp(28px,4vw,52px);line-height:1.03;margin-top:12px}
+    .story-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:28px;padding:30px}
+    .story-grid p{font-size:17px;line-height:1.7;color:#d5dbe4;margin-top:0}
+    .factbox{background:#080c12;border:1px solid #293545;border-radius:14px;padding:20px}
+    .factbox strong{color:white}.factbox p{font-size:14px;color:#b8c1cc}
+    .source{display:inline-block;text-decoration:none;background:white;color:#080b10;padding:12px 17px;border-radius:9px;font-weight:950;margin-top:4px}
+    .source:hover{transform:translateY(-1px)}
+    .method{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .method article{background:#0d131c;border:1px solid var(--line);border-radius:15px;padding:22px}
+    .method .num{font-size:12px;color:#52b4ff;font-weight:950;letter-spacing:.12em}
+    .method h3{font-size:21px;margin:8px 0}.method p{color:var(--muted);line-height:1.55;margin:0}
+    footer{border-top:1px solid var(--line);margin-top:26px;padding:28px 0 44px;color:#8993a2;font-size:12px;text-align:center;letter-spacing:.08em}
+    @media(max-width:850px){
+      .hero-card,.story-grid{grid-template-columns:1fr}
+      .hero-card .media{min-height:auto}.hero-card .media img{height:auto}
+      .method{grid-template-columns:1fr}.navlinks{display:none}
+      .hero-copy,.story-top,.story-grid{padding:22px}
+      .sectionhead{align-items:start;flex-direction:column}
+    }
   </style>
 </head>
 <body>
-  <header class="top"><div class="wrap nav"><div class="brand">WHITE HOUSE: <span>FACT CHECKED</span></div><div class="tag">Claims • Receipts • Reality</div></div></header>
+  <header class="top">
+    <div class="wrap nav">
+      <div class="brand">WHITE HOUSE: <span>FACT CHECKED</span></div>
+      <nav class="navlinks">
+        <a href="#featured">Featured</a>
+        <a href="#latest">Latest</a>
+        <a href="#method">Our Method</a>
+      </nav>
+    </div>
+  </header>
+
   <main>
-    <section class="hero wrap">
-      <div class="kicker">Independent fact-check & source hub</div>
-      <h1>Claims. Receipts. <span class="red">Reality.</span></h1>
-      <p>We separate the headline from the evidence, show the source, and make the important caveats impossible to miss.</p>
-      <div class="motto">No spin. No narratives. <b>Just the facts.</b></div>
+    <div class="wrap banner">
+      <img src="/assets/whfc-banner.webp" alt="White House Fact Checked — Claims, Receipts, Reality" />
+      <div class="strap"><span class="blue">Claims.</span><b>We check them.</b><span class="red">Receipts.</span><b>We show them.</b><span class="blue">Reality.</span><b>You decide.</b></div>
+    </div>
+
+    <section id="featured">
+      <div class="wrap">
+        <div class="sectionhead">
+          <div><div class="eyebrow">Featured fact-check desk</div><h2>Follow the evidence, not the spin.</h2></div>
+          <p>Political claims can be dramatic. Our job is to separate what is documented, what is disputed, and what still needs proof.</p>
+        </div>
+        <article class="hero-card">
+          <div class="media"><img src="/assets/healthcare-crisis.webp" alt="Healthcare policy commentary graphic" /></div>
+          <div class="hero-copy">
+            <span class="badge">Claim review</span>
+            <h1>Healthcare, hospitals, food safety and vaccines</h1>
+            <p>This graphic captures several claims being discussed about federal policy. The image is commentary; each claim should be judged against the underlying legislation, agency actions, budget documents and public-health data.</p>
+            <div class="note"><strong>Fact-check rule:</strong> a powerful image is not evidence by itself. We verify each individual claim before treating it as established fact.</div>
+          </div>
+        </article>
+      </div>
     </section>
 
-    <section class="section wrap">
-      <div class="section-title"><span class="dot"></span><h2>Featured story</h2></div>
-      <article class="story">
-        <div class="story-head">
-          <span class="label">New • Court filing</span>
-          <h3>Capital One says Trump-affiliated accounts were closed after anti-money-laundering review</h3>
+    <section id="latest">
+      <div class="wrap">
+        <div class="sectionhead">
+          <div><div class="eyebrow">Latest receipt</div><h2>Capital One account closures</h2></div>
         </div>
-        <div class="story-body">
-          <div>
-            <p>PBS NewsHour reports that Capital One said it closed hundreds of Trump-affiliated bank accounts in 2021 after a months-long review by its anti-money-laundering team. The Trump Organization has argued the closures were politically motivated; Capital One has denied that characterization.</p>
-            <p>The key distinction: <strong>Capital One did not accuse Donald Trump or the Trump Organization of money laundering.</strong> The bank said activity raised concerns under its anti-money-laundering review process and that the account decisions followed its policies and banking-compliance obligations.</p>
-            <a class="source" href="https://www.pbs.org/newshour/politics/trump-bank-accounts-were-closed-due-to-concerns-over-possible-money-laundering-capital-one-says" target="_blank" rel="noopener">Read the PBS NewsHour report →</a>
+        <article class="story">
+          <div class="story-top">
+            <span class="badge">Court filing / reporting</span>
+            <h3>Capital One says Trump-affiliated accounts were closed after an anti-money-laundering review</h3>
           </div>
-          <aside class="factbox">
-            <h4>What to remember</h4>
-            <p><strong>Documented:</strong> Capital One described an anti-money-laundering review and account closures.</p>
-            <p><strong>Not established:</strong> The bank did not say Trump or his organization committed money laundering.</p>
-            <p><strong>Source:</strong> PBS NewsHour / Associated Press.</p>
-          </aside>
-        </div>
-      </article>
+          <div class="story-grid">
+            <div>
+              <p>PBS NewsHour reported that Capital One said it closed hundreds of Trump-affiliated bank accounts in 2021 after a months-long review by its anti-money-laundering team. The Trump Organization has argued the closures were politically motivated; Capital One has disputed that characterization.</p>
+              <p><strong>The key distinction:</strong> the bank did not say Donald Trump or the Trump Organization committed money laundering. Concerns raised during an anti-money-laundering review are not the same thing as a finding of criminal conduct.</p>
+              <a class="source" href="https://www.pbs.org/newshour/politics/trump-bank-accounts-were-closed-due-to-concerns-over-possible-money-laundering-capital-one-says" target="_blank" rel="noopener">Read the PBS NewsHour report →</a>
+            </div>
+            <aside class="factbox">
+              <p><strong>Documented:</strong> Capital One described an anti-money-laundering review and subsequent account closures.</p>
+              <p><strong>Not established:</strong> the bank did not accuse Trump or his organization of committing money laundering.</p>
+              <p><strong>Source:</strong> PBS NewsHour / Associated Press reporting on the court filing.</p>
+            </aside>
+          </div>
+        </article>
+      </div>
+    </section>
 
-      <div class="archive">
-        <div class="card"><small>Our method</small><h4>Check the claim</h4><p>Start with the exact statement, not a paraphrase designed to make it easier to attack or defend.</p></div>
-        <div class="card"><small>Our method</small><h4>Show the receipts</h4><p>Link readers directly to reporting, documents, court records and other primary or high-quality sources.</p></div>
-        <div class="card"><small>Our method</small><h4>State the limits</h4><p>Clearly separate what a source proves from what it suggests, alleges, disputes or leaves unanswered.</p></div>
+    <section id="method">
+      <div class="wrap">
+        <div class="sectionhead">
+          <div><div class="eyebrow">The standard</div><h2>Claims. Receipts. Reality.</h2></div>
+        </div>
+        <div class="method">
+          <article><div class="num">01 / CLAIMS</div><h3>Quote the actual claim</h3><p>Start with what was really said or alleged—not a stronger or weaker version invented for the argument.</p></article>
+          <article><div class="num">02 / RECEIPTS</div><h3>Show the source</h3><p>Use court records, legislation, official data, primary documents and high-quality reporting whenever possible.</p></article>
+          <article><div class="num">03 / REALITY</div><h3>State the limits</h3><p>Separate what the evidence proves from what it suggests, disputes, alleges or leaves unanswered.</p></article>
+        </div>
       </div>
     </section>
   </main>
-  <footer class="footer"><div class="wrap">WHITE HOUSE: FACT CHECKED • Claims. Receipts. Reality.</div></footer>
+
+  <footer><div class="wrap">WHITE HOUSE: FACT CHECKED • CLAIMS. RECEIPTS. REALITY. • NO SPIN. NO NARRATIVES. JUST THE FACTS.</div></footer>
 </body>
 </html>
