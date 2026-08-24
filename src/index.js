@@ -1,55 +1,44 @@
-const ORIGINAL_SITE = "https://whitehousefactchecked.com";
+export class VisitCounter {
+  constructor(state, env) {
+    this.state = state;
+  }
+
+  async fetch(request) {
+    const url = new URL(request.url);
+    if (url.pathname !== "/api/visits") {
+      return new Response("Not found", { status: 404 });
+    }
+
+    if (request.method === "POST") {
+      let count = 0;
+      await this.state.storage.transaction(async (txn) => {
+        const current = await txn.get("count");
+        count = typeof current === "number" ? current + 1 : 116;
+        await txn.put("count", count);
+      });
+      return Response.json({ count }, { headers: { "cache-control": "no-store" } });
+    }
+
+    if (request.method === "GET") {
+      const current = await this.state.storage.get("count");
+      const count = typeof current === "number" ? current : 115;
+      return Response.json({ count }, { headers: { "cache-control": "no-store" } });
+    }
+
+    return new Response("Method not allowed", { status: 405 });
+  }
+}
 
 export default {
-  async fetch(request) {
-    const incoming = new URL(request.url);
+  async fetch(request, env) {
+    const url = new URL(request.url);
 
-    // This worker is only a staging mirror while we recover the original site.
-    // Never proxy the custom domain back to itself.
-    if (incoming.hostname === "whitehousefactchecked.com" || incoming.hostname === "www.whitehousefactchecked.com") {
-      return new Response("Original-site recovery staging is not ready for the custom domain yet.", {
-        status: 503,
-        headers: { "content-type": "text/plain; charset=utf-8" },
-      });
+    if (url.pathname === "/api/visits") {
+      const id = env.VISITOR_COUNTER.idFromName("white-house-fact-checked");
+      const stub = env.VISITOR_COUNTER.get(id);
+      return stub.fetch(request);
     }
 
-    const target = new URL(incoming.pathname + incoming.search, ORIGINAL_SITE);
-    const headers = new Headers(request.headers);
-    headers.delete("host");
-    headers.delete("cf-connecting-ip");
-    headers.delete("cf-ray");
-    headers.delete("cf-visitor");
-
-    const init = {
-      method: request.method,
-      headers,
-      redirect: "manual",
-    };
-
-    if (request.method !== "GET" && request.method !== "HEAD") {
-      init.body = request.body;
-    }
-
-    const upstream = await fetch(target.toString(), init);
-    const outHeaders = new Headers(upstream.headers);
-
-    // Let the recovered page and its assets render normally on workers.dev.
-    outHeaders.delete("content-security-policy");
-    outHeaders.delete("content-security-policy-report-only");
-    outHeaders.delete("x-frame-options");
-
-    const location = outHeaders.get("location");
-    if (location && location.startsWith(ORIGINAL_SITE)) {
-      const redirected = new URL(location);
-      redirected.protocol = incoming.protocol;
-      redirected.host = incoming.host;
-      outHeaders.set("location", redirected.toString());
-    }
-
-    return new Response(upstream.body, {
-      status: upstream.status,
-      statusText: upstream.statusText,
-      headers: outHeaders,
-    });
+    return env.ASSETS.fetch(request);
   },
 };
