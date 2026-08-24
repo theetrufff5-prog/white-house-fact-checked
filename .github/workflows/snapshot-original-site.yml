@@ -1,0 +1,62 @@
+name: Snapshot original White House Fact Checked site
+
+on:
+  push:
+    paths:
+      - ".github/workflows/snapshot-original-site.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Mirror the live original site
+        shell: bash
+        run: |
+          set -euxo pipefail
+          rm -rf recovered-site
+          mkdir -p recovered-site
+          wget \
+            --mirror \
+            --page-requisites \
+            --convert-links \
+            --adjust-extension \
+            --no-parent \
+            --execute robots=off \
+            --user-agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/142 Safari/537.36' \
+            --directory-prefix=recovered-site \
+            https://whitehousefactchecked.com/
+
+          if [ -d recovered-site/whitehousefactchecked.com ]; then
+            mkdir -p recovered-public
+            cp -a recovered-site/whitehousefactchecked.com/. recovered-public/
+          else
+            echo "Expected mirrored host directory was not created" >&2
+            find recovered-site -maxdepth 3 -type f -print
+            exit 1
+          fi
+
+          test -s recovered-public/index.html
+
+      - name: Save an independent recovery branch
+        shell: bash
+        run: |
+          set -euxo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B recovered-static
+          rm -rf public
+          mkdir -p public
+          cp -a recovered-public/. public/
+          printf '%s\n' 'Independent static snapshot of whitehousefactchecked.com captured by GitHub Actions.' > RECOVERY-SNAPSHOT.txt
+          git add -A
+          git commit -m "Capture independent snapshot of original site" || true
+          git push --force origin recovered-static
