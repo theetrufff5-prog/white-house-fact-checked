@@ -3,8 +3,8 @@ main = "src/index.js"
 compatibility_date = "2026-08-24"
 
 routes = [
-  { pattern = "whitehousefactchecked.com", custom_domain = true },
-  { pattern = "www.whitehousefactchecked.com", custom_domain = true },
+  { pattern = "whitehousefactchecked.com/*", zone_name = "whitehousefactchecked.com" },
+  { pattern = "www.whitehousefactchecked.com/*", zone_name = "whitehousefactchecked.com" },
 ]
 
 [assets]
