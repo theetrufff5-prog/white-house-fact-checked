@@ -17,9 +17,9 @@
         <p class="team-disclosure">Our virtual editorial team helps research, draft, and review each fact check under human direction.</p>
       </header>
       <div class="editorial-team-grid">
-        <article><span>EDITOR-IN-CHIEF</span><h3>Tom Holland</h3><p>Directs editorial standards, final review, and publication readiness.</p></article>
-        <article><span>SENIOR EDITOR</span><h3>Susan Brooks</h3><p>Shapes each story for clarity, balance, sourcing, and accuracy.</p></article>
-        <article><span>SENIOR FIELD SUPERVISOR</span><h3>James Williamson</h3><p>Leads source research, primary-document checks, and field verification.</p></article>
+        <article><img src="/tom-holland-editor-avatar.jpg" alt="AI-generated portrait representing virtual Editor-in-Chief Tom Holland"><span>EDITOR-IN-CHIEF</span><h3>Tom Holland</h3><p>Directs editorial standards, final review, and publication readiness.</p></article>
+        <article><img src="/susan-brooks-editor-avatar.jpg" alt="AI-generated portrait representing virtual Senior Editor Susan Brooks"><span>SENIOR EDITOR</span><h3>Susan Brooks</h3><p>Shapes each story for clarity, balance, sourcing, and accuracy.</p></article>
+        <article><img src="/james-williamson-field-avatar.jpg" alt="AI-generated portrait representing virtual Senior Field Supervisor James Williamson"><span>SENIOR FIELD SUPERVISOR</span><h3>James Williamson</h3><p>Leads source research, primary-document checks, and field verification.</p></article>
       </div>
     `;
     banner.insertAdjacentElement("afterend", team);

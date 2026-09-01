@@ -47,6 +47,7 @@ const EDITORIAL_TEAM_STYLES = `
   .editorial-team .team-disclosure{max-width:720px;color:#aeb1b8;font-size:15px;line-height:1.65}
   .editorial-team-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:#34373e;border:1px solid #34373e}
   .editorial-team-grid article{min-width:0;background:#111318;padding:26px}
+  .editorial-team-grid img{display:block;width:100%;aspect-ratio:1;object-fit:cover;margin:0 0 22px;border:1px solid #444851;filter:saturate(.9) contrast(1.04)}
   .editorial-team-grid span{display:block;color:#f0443e;font:700 11px/1.3 var(--font-geist-mono),monospace;letter-spacing:.12em}
   .editorial-team-grid h3{margin:12px 0 10px;font-size:clamp(22px,2.4vw,32px);line-height:1.05;text-transform:uppercase}
   .editorial-team-grid p{margin:0;color:#aeb1b8;font-size:14px;line-height:1.6}
