@@ -54,6 +54,20 @@ const EDITORIAL_TEAM_STYLES = `
   @media (max-width:760px){.editorial-team{width:min(100% - 24px,1180px);margin:20px auto 48px;box-shadow:7px 7px #f0443e26}.editorial-team-grid{grid-template-columns:1fr}}
 </style>`;
 
+const PARANORMAL_PROMO_STYLES = `
+<style>
+  .paranormal-promo{width:min(1180px,calc(100% - 40px));margin:30px auto 70px;background:#080a0d;border:1px solid #34373e;box-shadow:12px 12px #f0443e26;overflow:hidden}
+  .paranormal-promo>a{display:grid;grid-template-columns:1fr;color:#f5f5f3;text-decoration:none}
+  .paranormal-promo img{display:block;width:100%;aspect-ratio:3.2/1;object-fit:cover}
+  .paranormal-promo-copy{padding:clamp(28px,4vw,54px)}
+  .paranormal-promo-copy small{display:block;color:#f0443e;font:700 11px/1.3 var(--font-geist-mono),monospace;letter-spacing:.13em}
+  .paranormal-promo-copy h2{margin:13px 0 16px;font-size:clamp(32px,4vw,58px);line-height:.92;letter-spacing:-.045em;text-transform:uppercase}
+  .paranormal-promo-copy p{max-width:760px;margin:0 0 24px;color:#aeb1b8;font-size:15px;line-height:1.65}
+  .paranormal-promo-copy b{display:inline-block;padding:14px 17px;background:#b20f18;color:#fff;font:800 12px/1 var(--font-geist-mono),monospace;letter-spacing:.08em}
+  .paranormal-promo>a:hover .paranormal-promo-copy b,.paranormal-promo>a:focus-visible .paranormal-promo-copy b{background:#e12932}
+  @media (max-width:760px){.paranormal-promo{width:min(100% - 24px,1180px);margin:20px auto 48px;box-shadow:7px 7px #f0443e26}.paranormal-promo img{aspect-ratio:2/1}.paranormal-promo-copy{padding:26px}}
+</style>`;
+
 async function serveSiteAsset(request, env) {
   const url = new URL(request.url);
   const assetRequest = url.pathname === "/"
@@ -67,7 +81,7 @@ async function serveSiteAsset(request, env) {
   const html = await response.text();
   const interactiveHtml = html.replace(
     "</head>",
-    `${ENERGY_VIDEO_STYLES}${EDITORIAL_TEAM_STYLES}<script src="/energy-video.js" defer></script><script src="/usps-story.js" defer></script><script src="/editorial-team.js" defer></script></head>`,
+    `${ENERGY_VIDEO_STYLES}${EDITORIAL_TEAM_STYLES}${PARANORMAL_PROMO_STYLES}<script src="/energy-video.js" defer></script><script src="/usps-story.js" defer></script><script src="/editorial-team.js" defer></script><script src="/paranormal-promo.js" defer></script></head>`,
   );
 
   const headers = new Headers(response.headers);
