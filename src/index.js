@@ -52,7 +52,7 @@ async function serveSiteAsset(request, env) {
   const html = await response.text();
   const interactiveHtml = html.replace(
     "</head>",
-    `${ENERGY_VIDEO_STYLES}<script src="/energy-video.js" defer></script></head>`,
+    `${ENERGY_VIDEO_STYLES}<script src="/energy-video.js" defer></script><script src="/usps-story.js" defer></script></head>`,
   );
 
   const headers = new Headers(response.headers);
