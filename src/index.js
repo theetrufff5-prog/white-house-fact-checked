@@ -65,6 +65,12 @@ const PARANORMAL_PROMO_STYLES = `
   .paranormal-promo-copy p{max-width:760px;margin:0 0 24px;color:#aeb1b8;font-size:15px;line-height:1.65}
   .paranormal-promo-copy b{display:inline-block;padding:14px 17px;background:#b20f18;color:#fff;font:800 12px/1 var(--font-geist-mono),monospace;letter-spacing:.08em}
   .paranormal-promo>a:hover .paranormal-promo-copy b,.paranormal-promo>a:focus-visible .paranormal-promo-copy b{background:#e12932}
+  .paranormal-rail-card{display:block;margin-bottom:10px;background:#080a0d;border:2px solid #b20f18;color:#fff;text-decoration:none;box-shadow:7px 7px #4679c94d;overflow:hidden}
+  .paranormal-rail-card img{display:block;width:100%;aspect-ratio:2.1/1;object-fit:cover;border-bottom:1px solid #34373e}
+  .paranormal-rail-card span,.paranormal-rail-card b{display:block;padding-left:12px;padding-right:12px}
+  .paranormal-rail-card span{padding-top:10px;color:#f0443e;font:700 8px/1.2 var(--font-geist-mono),monospace;letter-spacing:.11em}
+  .paranormal-rail-card b{padding-top:7px;padding-bottom:11px;font:800 11px/1.25 var(--font-geist-mono),monospace;letter-spacing:.04em}
+  .paranormal-rail-card:hover,.paranormal-rail-card:focus-visible{border-color:#ef4045;background:#11151a}
   @media (max-width:760px){.paranormal-promo{width:min(100% - 24px,1180px);margin:20px auto 48px;box-shadow:7px 7px #f0443e26}.paranormal-promo img{aspect-ratio:2/1}.paranormal-promo-copy{padding:26px}}
 </style>`;
 
