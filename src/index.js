@@ -42,7 +42,7 @@ const ENERGY_VIDEO_STYLES = `
 async function serveSiteAsset(request, env) {
   const url = new URL(request.url);
   const assetRequest = url.pathname === "/"
-    ? new Request(new URL(`/index.html${url.search}`, request.url), request)
+    ? new Request(new URL(`/home.html${url.search}`, request.url), request)
     : request;
   const response = await env.ASSETS.fetch(assetRequest);
   const isHomePage = response.ok && (url.pathname === "/" || url.pathname === "/index.html");
