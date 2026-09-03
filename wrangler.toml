@@ -18,6 +18,14 @@ html_handling = "none"
 name = "VISITOR_COUNTER"
 class_name = "VisitCounter"
 
+[[durable_objects.bindings]]
+name = "COMMENT_STORE"
+class_name = "CommentStore"
+
 [[migrations]]
 tag = "v1"
 new_sqlite_classes = ["VisitCounter"]
+
+[[migrations]]
+tag = "v2"
+new_sqlite_classes = ["CommentStore"]
