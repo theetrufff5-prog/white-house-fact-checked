@@ -12,10 +12,10 @@
   form.addEventListener("submit", async (event) => {
     event.preventDefault(); const button = form.querySelector("button[type=submit]"), data = new FormData(form); button.disabled = true; message.textContent = "Submitting…";
     try {
-      const response = await fetch("/api/comments", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ name: data.get("name"), body: data.get("body"), website: data.get("website") }) });
+      const response = await fetch("/api/comments", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ name: data.get("name"), body: data.get("body"), website: data.get("website"), turnstileToken: data.get("cf-turnstile-response") }) });
       const result = await response.json(); if (!response.ok) throw new Error(result.error || "Submission failed.");
       form.reset(); message.textContent = "Thank you. Your remark is awaiting editorial review.";
-    } catch (error) { message.textContent = error.message; } finally { button.disabled = false; }
+    } catch (error) { message.textContent = error.message; } finally { if (window.turnstile) window.turnstile.reset(); button.disabled = false; }
   });
   list.addEventListener("click", async (event) => {
     const button = event.target.closest("[data-report]"); if (!button || button.disabled) return; button.disabled = true;
